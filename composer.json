@@ -1,7 +1,6 @@
 {
     "name": "pochocho/okta-saml-sso",
     "description": "SSO for Laravel with Okta",
-    "version": "0.3.0",
     "require": {
         "illuminate/support": "^9.41",
         "litesaml/lightsaml": "^4.0",
