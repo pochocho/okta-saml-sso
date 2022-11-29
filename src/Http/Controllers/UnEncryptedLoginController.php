@@ -2,15 +2,14 @@
 
 namespace Pochocho\OktaSamlSso\Http\Controllers;
 
-use Pochocho\OktaSamlSso\Actions\SamlUserAuthenticated;
 use Pochocho\OktaSamlSso\OktaSaml;
 
-class UnEncryptedLoginController
+class UnEncryptedLoginController extends OktaSamlController
 {
     public function __invoke(OktaSaml $oktaSaml)
     {
-        new SamlUserAuthenticated($oktaSaml->getEntity());
-        
+        $this->SamlUserAuthenticated($oktaSaml->getEncryptedEntity());
+
         return redirect()->intended(
             route(config('okta-saml-sso.login_redirect_route'))
         );
