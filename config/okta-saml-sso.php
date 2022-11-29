@@ -17,7 +17,7 @@ return [
 
     'single_signon_url' => env('OKTA_SIGNON_URL'),
 
-    'user_model' => env('OKTA_AUTHENTICATABLE_MODEL', "App\Models\User"),
+    'authenticatable_model' => env('OKTA_AUTHENTICATABLE_MODEL', "App\Models\User"),
 
     'authenticate_action' => Pochocho\OktaSamlSso\Events\SamlUserAuthenticated\SamlUserAuthenticated::class,
 

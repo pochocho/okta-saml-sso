@@ -5,6 +5,7 @@ namespace Pochocho\OktaSamlSso\Actions;
 use App\Models\User;
 use Pochocho\OktaSamlSso\OktaEntity;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class SamlUserAuthenticated
@@ -16,8 +17,7 @@ class SamlUserAuthenticated
      */
     public function handle(OktaEntity $oktaEntity)
     {
-
-        $model = $this->getUserModel();
+        $model = $this->getAuthenticatableModel();
 
         $user = $model::firstOrCreate(
             [
@@ -25,15 +25,15 @@ class SamlUserAuthenticated
             ],
             [
                 'name' => "{$oktaEntity->first_name} {$oktaEntity->last_name}",
-                'password' => Str::random(20),
+                'password' => Hash::make(Str::random(20)),
             ]
         );
 
         Auth::login($user);
     }
 
-    private function getUserModel()
+    private function getAuthenticatableModel()
     {
-        return config('okta-saml-sso.user_model');
+        return config('okta-saml-sso.authenticatable_model');
     }
 }
