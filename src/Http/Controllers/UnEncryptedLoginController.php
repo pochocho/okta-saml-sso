@@ -8,7 +8,7 @@ class UnEncryptedLoginController extends OktaSamlController
 {
     public function __invoke(OktaSaml $oktaSaml)
     {
-        $this->SamlUserAuthenticated($oktaSaml->getEncryptedEntity());
+        $this->SamlUserAuthenticated($oktaSaml->getEntity());
 
         return redirect()->intended(
             route(config('okta-saml-sso.login_redirect_route'))
