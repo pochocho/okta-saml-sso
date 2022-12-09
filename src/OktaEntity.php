@@ -12,18 +12,23 @@ class OktaEntity
     {
     }
 
-    public function fill(array $attributes)
-    {
-	    foreach ($attributes as $attribute) {
-		    $this->{strtolower($attribute->getName())} = $attribute->getFirstAttributeValue();
+	public function fill(array $attributes)
+	{
+		foreach ($attributes as $attribute) {
+			$name = strtolower($attribute->getName());
+			$this->$name = $this->getAttributeValue($attribute);
+		}
 
-		    if (str_contains($attribute->getNameFormat(), 'format:unspecified')) {
-			    $this->{strtolower($attribute->getName())} = $attribute->getAllAttributeValues();
-		    }
-	    }
+		return $this;
+	}
 
-        return $this;
-    }
+	private function getAttributeValue($attribute)
+	{
+		if (str_contains($attribute->getNameFormat(), 'format:unspecified')) {
+			return $attribute->getAllAttributeValues();
+		}
+		return $attribute->getFirstAttributeValue();
+	}
 
     public function __get(string $attribute)
     {
