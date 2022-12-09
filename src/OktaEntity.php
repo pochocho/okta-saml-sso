@@ -27,6 +27,7 @@ class OktaEntity
 		if (str_contains($attribute->getNameFormat(), 'format:unspecified')) {
 			return $attribute->getAllAttributeValues();
 		}
+
 		return $attribute->getFirstAttributeValue();
 	}
 
