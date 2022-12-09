@@ -14,9 +14,13 @@ class OktaEntity
 
     public function fill(array $attributes)
     {
-        foreach ($attributes as $attribute) {
-            $this->{strtolower($attribute->getName())} =  $attribute->getFirstAttributeValue();
-        }
+	    foreach ($attributes as $attribute) {
+		    $this->{strtolower($attribute->getName())} = $attribute->getFirstAttributeValue();
+
+		    if (str_contains($attribute->getNameFormat(), 'format:unspecified')) {
+			    $this->{strtolower($attribute->getName())} = $attribute->getAllAttributeValues();
+		    }
+	    }
 
         return $this;
     }
