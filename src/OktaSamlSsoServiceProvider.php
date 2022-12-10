@@ -24,7 +24,8 @@ class OktaSamlSsoServiceProvider extends ServiceProvider
             'okta-saml-sso'
         );
 
-        if (!$this->app->runningInConsole()) {
+
+        if (!$this->app->runningInConsole() || $this->app->runningUnitTests()) {
             $this->app->bind(OktaEntity::class, function ($app) {
                 return new OktaEntity($app->config['okta-saml-sso']['attribute_statements']);
             });
