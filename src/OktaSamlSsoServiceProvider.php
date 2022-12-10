@@ -2,6 +2,7 @@
 
 namespace Pochocho\OktaSamlSso;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use LightSaml\Model\Context\DeserializationContext;
 use LightSaml\Model\Protocol\Response;
@@ -15,6 +16,10 @@ class OktaSamlSsoServiceProvider extends ServiceProvider
     {
         $configPath = __DIR__ . '/../config/okta-saml-sso.php';
         $this->publishes([$configPath => $this->getConfigPath()], 'okta-saml-sso');
+
+        if($this->app->config['okta-saml-sso']['webhooks']['enabled']){
+            $this->registerWebhookRoutes();
+        }
     }
 
     public function register(): void
@@ -23,6 +28,7 @@ class OktaSamlSsoServiceProvider extends ServiceProvider
             __DIR__.'/../config/okta-saml-sso.php',
             'okta-saml-sso'
         );
+        
 
 
         if (!$this->app->runningInConsole() || $this->app->runningUnitTests()) {
@@ -53,5 +59,9 @@ class OktaSamlSsoServiceProvider extends ServiceProvider
     protected function getConfigPath(): string
     {
         return config_path('okta-saml-sso.php');
+    }
+
+    private function registerWebhookRoutes(){
+        $this->loadRoutesFrom(__DIR__.'/../routes/okta-webhooks.php');
     }
 }

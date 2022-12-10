@@ -23,4 +23,13 @@ return [
     'authenticate_action' => Pochocho\OktaSamlSso\Events\SamlUserAuthenticated\SamlUserAuthenticated::class,
 
     'login_redirect_route' => env("LOGIN_REDIRECT_ROUTE"),
+
+    'webhooks' => [
+        'enabled' => env('OKTA_WEBHOOK_ENABLED', false),
+        'route_path' => env('OKTA_WEBHOOK_PATH', '/okta-webhook'),
+        'authorization' => [
+            'header' => env('OKTA_WEBHOOK_AUTH_HEADER', 'x-auth-key'),
+            'secret' => env('OKTA_WEBHOOK_AUTH_SECRET'),
+        ]
+    ]
 ];
