@@ -13,6 +13,7 @@ return [
     'credential_paths' => [
         'certificate' => env('OKTA_CERTIFICATE_PATH', base_path('oktasso.crt')),
         'key' => env('OKTA_KEY_PATH', base_path('oktasso.key')),
+        'idp_certificate' => env('OKTA_IDP_KEY_PATH', base_path('idp.cert'))
     ],
 
     'single_signon_url' => env('OKTA_SIGNON_URL'),

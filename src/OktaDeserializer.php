@@ -2,11 +2,15 @@
 
 namespace Pochocho\OktaSamlSso;
 
+use DateTime;
 use LightSaml\Credential\KeyHelper;
 use LightSaml\Credential\X509Certificate;
 use LightSaml\Credential\X509Credential;
+use LightSaml\Error\LightSamlSecurityException;
+use LightSaml\Model\Assertion\Conditions;
 use LightSaml\Model\Context\DeserializationContext;
 use LightSaml\Model\Protocol\Response;
+use LightSaml\Model\XmlDSig\SignatureXmlReader;
 
 class OktaDeserializer
 {
@@ -38,11 +42,43 @@ class OktaDeserializer
             $this->deserializationContext
         );
 
+        $this->validateSignature($this->response->getSignature());
+
         if (!empty($this->credentials)) {
             return $this->decryptAssertions();
         }
+        
+        $assertion = $this->response->getFirstAssertion();
 
-        return $this->response->getFirstAssertion();
+        $this->validateConditions($assertion->getConditions());
+
+        return $assertion;
+    }
+
+    private function getPublicKey()
+    {
+        return KeyHelper::createPublicKey(
+            X509Certificate::fromFile($this->config['idp_certificate'])
+        );
+    }
+
+    private function validateSignature(SignatureXmlReader $signature){
+        try {
+            $validSignature = $signature->validate($this->getPublicKey());
+        } catch (LightSamlSecurityException $e) {
+            abort(400, "Invalid Request");
+        }
+
+        if (!$validSignature) {
+            abort(400, "Invalid SAML Signature");
+        }
+    }
+
+    private function validateConditions(Conditions $conditions){
+        
+        if($conditions->getNotOnOrAfterTimestamp() <= time()){
+            abort(400, "Expipred Request");
+        }
     }
 
     private function decryptAssertions()
