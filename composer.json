@@ -12,6 +12,11 @@
             "Pochocho\\OktaSamlSso\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Pochocho\\OktaSamlSso\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "pochocho",
@@ -24,5 +29,9 @@
                 "Pochocho\\OktaSamlSso\\OktaSamlSsoServiceProvider"
             ]
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "orchestra/testbench": "^7.15"
     }
 }
