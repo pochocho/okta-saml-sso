@@ -20,7 +20,7 @@ return [
 
     'authenticatable_model' => env('OKTA_AUTHENTICATABLE_MODEL', "App\Models\User"),
 
-    'authenticate_action' => Pochocho\OktaSamlSso\Events\SamlUserAuthenticated\SamlUserAuthenticated::class,
+    'authenticate_action' => Pochocho\OktaSamlSso\Actions\SamlUserAuthenticated::class,
 
     'login_redirect_route' => env('LOGIN_REDIRECT_ROUTE'),
 
