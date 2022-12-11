@@ -18,7 +18,8 @@ class OktaWebhookRequest extends FormRequest
         return $authCode === config('okta-saml-sso.webhooks.authorization.secret');
     }
 
-    public function rules(){
+    public function rules()
+    {
         return [];
     }
 }

@@ -14,9 +14,8 @@ class OktaWebhookReceived
      * @return void
      */
     public function __construct(
-        public array $eventMeta, 
+        public array $eventMeta,
         public array $eventData
-    )
-    {
+    ) {
     }
 }

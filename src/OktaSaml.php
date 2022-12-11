@@ -3,8 +3,6 @@
 namespace Pochocho\OktaSamlSso;
 
 use Exception;
-use Pochocho\OktaSamlSso\OktaDeserializer;
-use Pochocho\OktaSamlSso\OktaEntity;
 
 class OktaSaml
 {
@@ -19,7 +17,7 @@ class OktaSaml
     public function getEntity(): OktaEntity
     {
         if (empty($this->samlResponse)) {
-            throw new Exception("Missing SAML Response");
+            throw new Exception('Missing SAML Response');
         }
 
         $assertion = $this->oktaDeserializer->deserialize($this->samlResponse);
