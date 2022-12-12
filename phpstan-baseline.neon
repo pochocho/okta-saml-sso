@@ -1,0 +1,36 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to an undefined property Pochocho\\\\OktaSamlSso\\\\OktaEntity\\:\\:\\$email\\.$#"
+			count: 1
+			path: src/Actions/SamlUserAuthenticated.php
+
+		-
+			message: "#^Access to an undefined property Pochocho\\\\OktaSamlSso\\\\OktaEntity\\:\\:\\$first_name\\.$#"
+			count: 1
+			path: src/Actions/SamlUserAuthenticated.php
+
+		-
+			message: "#^Access to an undefined property Pochocho\\\\OktaSamlSso\\\\OktaEntity\\:\\:\\$last_name\\.$#"
+			count: 1
+			path: src/Actions/SamlUserAuthenticated.php
+
+		-
+			message: "#^Method Pochocho\\\\OktaSamlSso\\\\Http\\\\Middleware\\\\SsoAuthenticate\\:\\:redirectTo\\(\\) should return string\\|null but return statement is missing\\.$#"
+			count: 1
+			path: src/Http/Middleware/SsoAuthenticate.php
+
+		-
+			message: "#^Property Pochocho\\\\OktaSamlSso\\\\OktaSaml\\:\\:\\$config is never read, only written\\.$#"
+			count: 1
+			path: src/OktaSaml.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Foundation\\\\Application\\:\\:\\$config\\.$#"
+			count: 1
+			path: src/OktaSamlSsoServiceProvider.php
+
+		-
+			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Foundation\\\\Application\\:\\:\\$request\\.$#"
+			count: 1
+			path: src/OktaSamlSsoServiceProvider.php
