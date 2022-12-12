@@ -2,11 +2,10 @@
 
 namespace Pochocho\OktaSamlSso\Actions;
 
-use App\Models\User;
-use Pochocho\OktaSamlSso\OktaEntity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Pochocho\OktaSamlSso\OktaEntity;
 
 class SamlUserAuthenticated
 {

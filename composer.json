@@ -17,6 +17,11 @@
             "Pochocho\\OktaSamlSso\\Tests\\": "tests/"
         }
     },
+    "scripts": {
+        "analyze": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/phpunit",
+        "format": "vendor/bin/pint"
+    },
     "authors": [
         {
             "name": "pochocho",
@@ -32,6 +37,15 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
-        "orchestra/testbench": "^7.15"
+        "orchestra/testbench": "^7.15",
+        "laravel/pint": "^1.2",
+        "phpstan/phpstan-phpunit": "^1.3",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/extension-installer": "^1.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
     }
 }

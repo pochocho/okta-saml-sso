@@ -19,32 +19,32 @@ class OktaEntityTest extends TestCase
 
     protected function limitedAttributeStatements($app)
     {
-        $app->config->set('okta-saml-sso.attribute_statements', ['first_name','last_name']);
+        $app->config->set('okta-saml-sso.attribute_statements', ['first_name', 'last_name']);
     }
 
-    private function generateAttributes(){
-
+    private function generateAttributes()
+    {
         $attributes = [
             'first_name' => [
                 'value' => 'John',
-                'format' => "attrname-format:basic"
+                'format' => 'attrname-format:basic',
             ],
             'last_name' => [
                 'value' => 'Doe',
-                'format' => "attrname-format:basic"
+                'format' => 'attrname-format:basic',
             ],
             'email' => [
                 'value' => 'johndoe@email.com',
-                'format' => "attrname-format:basic"
+                'format' => 'attrname-format:basic',
             ],
             'groups' => [
-               'value' => ['a','b','c'],
-               'format' => "attrname-format:unspecified"
-            ]
+                'value' => ['a', 'b', 'c'],
+                'format' => 'attrname-format:unspecified',
+            ],
         ];
 
         $samlAttributes = [];
-        foreach($attributes as $attributeKey => $attribute){
+        foreach ($attributes as $attributeKey => $attribute) {
             $samlAttribue = new Attribute($attributeKey, $attribute['value']);
             $samlAttribue->setNameFormat($attribute['format']);
             $samlAttributes[] = $samlAttribue;
@@ -52,7 +52,6 @@ class OktaEntityTest extends TestCase
 
         return $samlAttributes;
     }
-
 
     /**
      * @test
@@ -63,7 +62,7 @@ class OktaEntityTest extends TestCase
         $oktaEntity = app()->make(OktaEntity::class);
 
         $samlAttributes = $this->generateAttributes();
-        
+
         $this->expectException(Exception::class);
 
         $oktaEntity->fill(
@@ -79,7 +78,7 @@ class OktaEntityTest extends TestCase
         $oktaEntity = app()->make(OktaEntity::class);
 
         $samlAttributes = $this->generateAttributes();
-        
+
         $oktaEntity->fill(
             $samlAttributes
         );
@@ -98,7 +97,7 @@ class OktaEntityTest extends TestCase
         $oktaEntity = app()->make(OktaEntity::class);
 
         $samlAttributes = $this->generateAttributes();
-        
+
         $oktaEntity->fill(
             $samlAttributes
         );
@@ -114,7 +113,7 @@ class OktaEntityTest extends TestCase
         $oktaEntity = app()->make(OktaEntity::class);
 
         $samlAttributes = $this->generateAttributes();
-        
+
         $oktaEntity->fill(
             $samlAttributes
         );

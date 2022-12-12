@@ -2,12 +2,9 @@
 
 namespace Pochocho\OktaSamlSso\Tests;
 
-use Exception;
 use Illuminate\Support\Facades\Event;
-use LightSaml\Model\Assertion\Attribute;
 use Orchestra\Testbench\TestCase;
 use Pochocho\OktaSamlSso\Events\OktaWebhookReceived;
-use Pochocho\OktaSamlSso\OktaEntity;
 use Pochocho\OktaSamlSso\OktaSamlSsoServiceProvider;
 
 class OktaWebhooksTest extends TestCase
@@ -21,10 +18,9 @@ class OktaWebhooksTest extends TestCase
 
     protected function webhookEnabledSettings($app)
     {
-        $app->config->set('okta-saml-sso.webhooks.enabled',true);
+        $app->config->set('okta-saml-sso.webhooks.enabled', true);
         $app->config->set('okta-saml-sso.webhooks.authorization.secret', '12345678');
     }
-
 
     /**
      * @test
@@ -38,7 +34,7 @@ class OktaWebhooksTest extends TestCase
             '/okta-webhook',
             [
                 'x-auth-key' => '12345678',
-                'x-okta-verification-challenge' => $verifierCode
+                'x-okta-verification-challenge' => $verifierCode,
             ]
         );
 
@@ -114,5 +110,4 @@ class OktaWebhooksTest extends TestCase
         $response->assertOk();
         Event::assertDispatched(OktaWebhookReceived::class);
     }
-   
 }

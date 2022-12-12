@@ -7,7 +7,7 @@ Route::get(
     config('okta-saml-sso.webhooks.route_path'),
     [
         OktaWebhookController::class,
-        'oktaVerification'
+        'oktaVerification',
     ]
 );
 
@@ -15,6 +15,6 @@ Route::post(
     config('okta-saml-sso.webhooks.route_path'),
     [
         OktaWebhookController::class,
-        'processWebhook'
+        'processWebhook',
     ]
 );

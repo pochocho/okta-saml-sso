@@ -12,28 +12,28 @@ class OktaEntity
     {
     }
 
-	public function fill(array $attributes)
-	{
-		foreach ($attributes as $attribute) {
-			$name = strtolower($attribute->getName());
-			$this->$name = $this->getAttributeValue($attribute);
-		}
+    public function fill(array $attributes)
+    {
+        foreach ($attributes as $attribute) {
+            $name = strtolower($attribute->getName());
+            $this->$name = $this->getAttributeValue($attribute);
+        }
 
-		return $this;
-	}
+        return $this;
+    }
 
-	private function getAttributeValue($attribute)
-	{
-		if (str_contains($attribute->getNameFormat(), 'format:unspecified')) {
-			return $attribute->getAllAttributeValues();
-		}
+    private function getAttributeValue($attribute)
+    {
+        if (str_contains($attribute->getNameFormat(), 'format:unspecified')) {
+            return $attribute->getAllAttributeValues();
+        }
 
-		return $attribute->getFirstAttributeValue();
-	}
+        return $attribute->getFirstAttributeValue();
+    }
 
     public function __get(string $attribute)
     {
-        if (!in_array($attribute, $this->acceptedAttributes)) {
+        if (! in_array($attribute, $this->acceptedAttributes)) {
             throw new Exception("The {$attribute} Attribute is not configured");
         }
 
@@ -42,7 +42,7 @@ class OktaEntity
 
     public function __set(string $attribute, $attributeValue)
     {
-        if (!in_array($attribute, $this->acceptedAttributes)) {
+        if (! in_array($attribute, $this->acceptedAttributes)) {
             throw new Exception("The {$attribute} Attribute is not configured");
         }
 

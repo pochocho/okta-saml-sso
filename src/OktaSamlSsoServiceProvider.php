@@ -2,22 +2,18 @@
 
 namespace Pochocho\OktaSamlSso;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use LightSaml\Model\Context\DeserializationContext;
 use LightSaml\Model\Protocol\Response;
-use Pochocho\OktaSamlSso\OktaDeserializer;
-use Pochocho\OktaSamlSso\OktaEntity;
-use Pochocho\OktaSamlSso\OktaSaml;
 
 class OktaSamlSsoServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $configPath = __DIR__ . '/../config/okta-saml-sso.php';
+        $configPath = __DIR__.'/../config/okta-saml-sso.php';
         $this->publishes([$configPath => $this->getConfigPath()], 'okta-saml-sso');
 
-        if($this->app->config['okta-saml-sso']['webhooks']['enabled']){
+        if ($this->app->config['okta-saml-sso']['webhooks']['enabled']) {
             $this->registerWebhookRoutes();
         }
     }
@@ -28,10 +24,8 @@ class OktaSamlSsoServiceProvider extends ServiceProvider
             __DIR__.'/../config/okta-saml-sso.php',
             'okta-saml-sso'
         );
-        
 
-
-        if (!$this->app->runningInConsole() || $this->app->runningUnitTests()) {
+        if (! $this->app->runningInConsole() || $this->app->runningUnitTests()) {
             $this->app->bind(OktaEntity::class, function ($app) {
                 return new OktaEntity($app->config['okta-saml-sso']['attribute_statements']);
             });
@@ -46,6 +40,7 @@ class OktaSamlSsoServiceProvider extends ServiceProvider
 
             $this->app->bind(OktaSaml::class, function ($app) {
                 $request = $this->app->request;
+
                 return new OktaSaml(
                     $request->input('SAMLResponse'),
                     $app->make(OktaDeserializer::class),
@@ -61,7 +56,8 @@ class OktaSamlSsoServiceProvider extends ServiceProvider
         return config_path('okta-saml-sso.php');
     }
 
-    private function registerWebhookRoutes(){
+    private function registerWebhookRoutes()
+    {
         $this->loadRoutesFrom(__DIR__.'/../routes/okta-webhooks.php');
     }
 }
