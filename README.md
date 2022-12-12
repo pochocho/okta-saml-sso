@@ -32,6 +32,8 @@ in the form the `Single sign on URL` refers to url in your app that Okta will se
 `Default RelayState` is the URL that Okta will redirect to after successfull login.
 
 On this form you can also set the `Attribute Statements` and map them to profile fields. This package assumes snake_case naming conventions on the attributes (e.g first_name, las_name, email, etc)
+ 
+After configuring the app, visit the signon tab and click on the "View SAML Setup Instructions", once the page loads download the certificate file and place it in the root of your application call it `idp.cert` **important: do not commit this file to version control** 
 
 ## configuration
 
