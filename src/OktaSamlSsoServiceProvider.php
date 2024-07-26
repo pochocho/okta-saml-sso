@@ -32,8 +32,8 @@ class OktaSamlSsoServiceProvider extends ServiceProvider
 
             $this->app->bind(OktaDeserializer::class, function ($app) {
                 return new OktaDeserializer(
-                    new DeserializationContext(),
-                    new Response(),
+                    new DeserializationContext,
+                    new Response,
                     $app->config['okta-saml-sso']['credential_paths']
                 );
             });

@@ -24,6 +24,7 @@ class OktaWebhooksTest extends TestCase
 
     /**
      * @test
+     *
      * @define-env webhookEnabledSettings
      */
     public function itCanVerifyOwnershipOfServer()
@@ -45,6 +46,7 @@ class OktaWebhooksTest extends TestCase
 
     /**
      * @test
+     *
      * @define-env webhookEnabledSettings
      */
     public function itCanProtectsVerificationAndProcessingEndpointsWithSecret()
@@ -93,6 +95,7 @@ class OktaWebhooksTest extends TestCase
 
     /**
      * @test
+     *
      * @define-env webhookEnabledSettings
      */
     public function itFiresEventToProcessWebhooks()

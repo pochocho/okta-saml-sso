@@ -19,8 +19,7 @@ class OktaDeserializer
         private DeserializationContext $deserializationContext,
         private Response $response,
         private array $config
-    ) {
-    }
+    ) {}
 
     public function encrypted()
     {
@@ -83,7 +82,7 @@ class OktaDeserializer
 
     private function decryptAssertions()
     {
-        $decryptDeserializeContext = new DeserializationContext();
+        $decryptDeserializeContext = new DeserializationContext;
         /** @var \LightSaml\Model\Assertion\EncryptedAssertionReader $reader */
         $reader = $this->response->getFirstEncryptedAssertion();
 

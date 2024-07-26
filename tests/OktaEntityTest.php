@@ -55,6 +55,7 @@ class OktaEntityTest extends TestCase
 
     /**
      * @test
+     *
      * @define-env limitedAttributeStatements
      */
     public function itFailsToFillIfUnexpectedAttributes()
