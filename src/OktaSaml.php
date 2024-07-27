@@ -11,8 +11,7 @@ class OktaSaml
         private OktaDeserializer $oktaDeserializer,
         private OktaEntity $oktaEntity,
         private ?array $config = null
-    ) {
-    }
+    ) {}
 
     public function getEntity(): OktaEntity
     {
@@ -25,7 +24,7 @@ class OktaSaml
         return $this->oktaEntity
             ->fill(
                 $assertion->getFirstAttributeStatement()
-                ->getAllAttributes()
+                    ->getAllAttributes()
             );
     }
 

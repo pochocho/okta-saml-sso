@@ -8,9 +8,7 @@ class OktaEntity
 {
     private $attributes;
 
-    public function __construct(private array $acceptedAttributes)
-    {
-    }
+    public function __construct(private array $acceptedAttributes) {}
 
     public function fill(array $attributes)
     {

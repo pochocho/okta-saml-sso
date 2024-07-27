@@ -10,6 +10,6 @@ class OktaSamlController
     {
         $action = config('okta-saml-sso.authenticate_action');
 
-        (new $action())->handle($oktaEntity);
+        (new $action)->handle($oktaEntity);
     }
 }
