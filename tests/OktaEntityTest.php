@@ -4,7 +4,9 @@ namespace Pochocho\OktaSamlSso\Tests;
 
 use Exception;
 use LightSaml\Model\Assertion\Attribute;
+use Orchestra\Testbench\Attributes\DefineEnvironment;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 use Pochocho\OktaSamlSso\OktaEntity;
 use Pochocho\OktaSamlSso\OktaSamlSsoServiceProvider;
 
@@ -53,12 +55,9 @@ class OktaEntityTest extends TestCase
         return $samlAttributes;
     }
 
-    /**
-     * @test
-     *
-     * @define-env limitedAttributeStatements
-     */
-    public function itFailsToFillIfUnexpectedAttributes()
+    #[Test]
+    #[DefineEnvironment('limitedAttributeStatements')]
+    public function it_fails_to_fill_if_unexpected_attributes()
     {
         $oktaEntity = app()->make(OktaEntity::class);
 
@@ -71,10 +70,8 @@ class OktaEntityTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itFillsIfAllAttributesConfirgured()
+    #[Test]
+    public function it_fills_if_all_attributes_confirgured()
     {
         $oktaEntity = app()->make(OktaEntity::class);
 
@@ -90,10 +87,8 @@ class OktaEntityTest extends TestCase
         $this->assertNotNull($oktaEntity->groups);
     }
 
-    /**
-     * @test
-     */
-    public function itTreatsUnspecifiedFormatsToArrays()
+    #[Test]
+    public function it_treats_unspecified_formats_to_arrays()
     {
         $oktaEntity = app()->make(OktaEntity::class);
 
@@ -106,10 +101,8 @@ class OktaEntityTest extends TestCase
         $this->assertIsArray($oktaEntity->groups);
     }
 
-    /**
-     * @test
-     */
-    public function itTreatsBasicFormatsAsStrings()
+    #[Test]
+    public function it_treats_basic_formats_as_strings()
     {
         $oktaEntity = app()->make(OktaEntity::class);
 

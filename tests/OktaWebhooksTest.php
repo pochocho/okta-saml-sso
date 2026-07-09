@@ -3,7 +3,9 @@
 namespace Pochocho\OktaSamlSso\Tests;
 
 use Illuminate\Support\Facades\Event;
+use Orchestra\Testbench\Attributes\DefineEnvironment;
 use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 use Pochocho\OktaSamlSso\Events\OktaWebhookReceived;
 use Pochocho\OktaSamlSso\OktaSamlSsoServiceProvider;
 
@@ -22,12 +24,9 @@ class OktaWebhooksTest extends TestCase
         $app->config->set('okta-saml-sso.webhooks.authorization.secret', '12345678');
     }
 
-    /**
-     * @test
-     *
-     * @define-env webhookEnabledSettings
-     */
-    public function itCanVerifyOwnershipOfServer()
+    #[Test]
+    #[DefineEnvironment('webhookEnabledSettings')]
+    public function it_can_verify_ownership_of_server()
     {
         $verifierCode = '🌯';
 
@@ -44,12 +43,9 @@ class OktaWebhooksTest extends TestCase
         $this->assertEquals($verifierCode, $response->json('verification'));
     }
 
-    /**
-     * @test
-     *
-     * @define-env webhookEnabledSettings
-     */
-    public function itCanProtectsVerificationAndProcessingEndpointsWithSecret()
+    #[Test]
+    #[DefineEnvironment('webhookEnabledSettings')]
+    public function it_can_protects_verification_and_processing_endpoints_with_secret()
     {
         $validSecretCode = '12345678';
         $invalidSecret = 'naughty';
@@ -93,12 +89,9 @@ class OktaWebhooksTest extends TestCase
         $response->assertOk();
     }
 
-    /**
-     * @test
-     *
-     * @define-env webhookEnabledSettings
-     */
-    public function itFiresEventToProcessWebhooks()
+    #[Test]
+    #[DefineEnvironment('webhookEnabledSettings')]
+    public function it_fires_event_to_process_webhooks()
     {
         Event::fake();
 
