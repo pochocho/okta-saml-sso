@@ -2,6 +2,18 @@
 
 All notable changes to `pochocho/okta-saml-sso` will be documented in this file.
 
+## v3.0.0 - 2026-07-09
+
+### What's Changed
+
+* Bump aglipanci/laravel-pint-action from 2.3.0 to 2.3.1 by @dependabot[bot] in https://github.com/pochocho/okta-saml-sso/pull/20
+* Bump aglipanci/laravel-pint-action from 2.3.1 to 2.4 by @dependabot[bot] in https://github.com/pochocho/okta-saml-sso/pull/22
+* Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot[bot] in https://github.com/pochocho/okta-saml-sso/pull/24
+* Bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/pochocho/okta-saml-sso/pull/27
+* Support only Laravel 11, 12, and 13 by @pochocho in https://github.com/pochocho/okta-saml-sso/pull/32
+
+**Full Changelog**: https://github.com/pochocho/okta-saml-sso/compare/v2.0.0...3.0.0
+
 ## Unreleased
 
 ### What's Changed
