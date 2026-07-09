@@ -1,5 +1,7 @@
 <?php
 
+use Pochocho\OktaSamlSso\Actions\SamlUserAuthenticated;
+
 return [
 
     'attribute_statements' => explode(
@@ -20,7 +22,7 @@ return [
 
     'authenticatable_model' => env('OKTA_AUTHENTICATABLE_MODEL', "App\Models\User"),
 
-    'authenticate_action' => Pochocho\OktaSamlSso\Actions\SamlUserAuthenticated::class,
+    'authenticate_action' => SamlUserAuthenticated::class,
 
     'login_redirect_route' => env('LOGIN_REDIRECT_ROUTE'),
 

@@ -2,6 +2,14 @@
 
 All notable changes to `pochocho/okta-saml-sso` will be documented in this file.
 
+## Unreleased
+
+### What's Changed
+
+- **Breaking:** Dropped support for Laravel 9 and 10. The package now requires Laravel 11, 12, or 13 and PHP >= 8.2 (PHP >= 8.3 for Laravel 13). The next release should be a major version bump.
+- Updated dev tooling: PHPUnit `^10.5|^11.5|^12.5`, orchestra/testbench `^9.0|^10.0|^11.0`, and widened PHPStan extension constraints.
+- Migrated `phpunit.xml` to the PHPUnit 10+ schema and replaced `@test`/`@define-env` docblock annotations with `#[Test]`/`#[DefineEnvironment]` attributes.
+
 ## v2.0.0 - 2024-07-27
 
 ### What's Changed

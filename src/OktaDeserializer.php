@@ -7,13 +7,14 @@ use LightSaml\Credential\X509Certificate;
 use LightSaml\Credential\X509Credential;
 use LightSaml\Error\LightSamlSecurityException;
 use LightSaml\Model\Assertion\Conditions;
+use LightSaml\Model\Assertion\EncryptedAssertionReader;
 use LightSaml\Model\Context\DeserializationContext;
 use LightSaml\Model\Protocol\Response;
 use LightSaml\Model\XmlDSig\SignatureXmlReader;
 
 class OktaDeserializer
 {
-    private ?X509Credential $credentials;
+    private ?X509Credential $credentials = null;
 
     public function __construct(
         private DeserializationContext $deserializationContext,
@@ -83,7 +84,7 @@ class OktaDeserializer
     private function decryptAssertions()
     {
         $decryptDeserializeContext = new DeserializationContext;
-        /** @var \LightSaml\Model\Assertion\EncryptedAssertionReader $reader */
+        /** @var EncryptedAssertionReader $reader */
         $reader = $this->response->getFirstEncryptedAssertion();
 
         return $reader->decryptMultiAssertion([$this->credentials], $decryptDeserializeContext);

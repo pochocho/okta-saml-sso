@@ -3,13 +3,14 @@
 namespace Pochocho\OktaSamlSso\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as AuthenticateMiddleware;
+use Illuminate\Http\Request;
 
 class SsoAuthenticate extends AuthenticateMiddleware
 {
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return string|null
      */
     protected function redirectTo($request)
